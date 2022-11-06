@@ -12,14 +12,14 @@ This projects aims at possibility to easily launch Matter internet-of-things pro
 6. Run example sketch
 
 ## Example usage
-Please look at [examples](https://github.com/jakubdybczak/esp32-arduino-matter/tree/master/examples). You can test integration with Android and Matter controller by downloading compiled [CHIPTool](https://drive.google.com/file/d/14tjTz52_rd6S-O1drdVseWj6jXSrGoRx/view?usp=sharing) for Android.
+Please look at [examples](https://github.com/jakubdybczak/esp32-arduino-matter/tree/master/examples). You can test integration with Android and Matter controller by downloading compiled [CHIPTool](https://drive.google.com/drive/folders/1NXqfbRzBQRWCH4VWJQwQSO6KKYeIH7VK) for Android.
 
 ## Limitations
 * Library only works on base ESP32 (no support for ESP32-S2 and other variants).
 * There is no possibility to change vendor/product ID as this value is pre-compiled.
 * There is no known possibility to change setup PIN.
 * This library comes with precompiled NimBLE, because default Bluedroid shipped with arduino-esp32 takes too much RAM memory.
-* As of 26 Oct 2022, this library does not work with Google Home as this app is compatible with older version of Matter. You can test this library with CHIPTool.
+* As of 06 Nov 2022, this library does not work with Google Home as this app is compatible with older version of Matter. You can test this library with CHIPTool.
 
 ## Versions
 This project is currently build based on these projects:
@@ -27,8 +27,8 @@ This project is currently build based on these projects:
 | Project       | Tag/Commit Hash |
 | ------------- | ------------- |
 | [Espressif's esp-idf](https://github.com/espressif/esp-idf) | 4.4.2 (Arduino ESP32 board 2.0.5) |
-| [Espressif's SDK for Matter](https://github.com/espressif/esp-matter) | 6fb13868  |
-| [Matter](https://github.com/project-chip/connectedhomeip) | 4f7669b0 |
+| [Espressif's SDK for Matter](https://github.com/espressif/esp-matter) | e7c70721  |
+| [Matter](https://github.com/project-chip/connectedhomeip) | 87bee4de |
 
 ## Enabling C++17 on Arduino IDE
 1. Find `platform.txt` for ESP32 board. Location of this file is platform depended.
@@ -42,6 +42,6 @@ This project is currently build based on these projects:
 3. Restart Arduino IDE.
 
 ## Future and possibilities
-* Building packages for other variants of ESP32
+* Building packages for other variants of ESP32. If you would like to test other variants of ESP32, please create an issue.
 * Providing scripts for buliding ESP32 Arduino Matter for specified Matter / esp-matter / ESP-IDF branches
 * Creating more user-friendly access to Matter clusters
