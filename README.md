@@ -11,11 +11,18 @@ This projects aims at possibility to easily launch Matter internet-of-things pro
 5. To prevent some issues related to old data, enable `Erase Flash Before Sketch Upload` option
 6. Run example sketch
 
+## Installing on PlatformIO
+1. Use espressif32 platform at version 5.2.0
+2. Turn on C++17 support for, by setting `build_unflags=-std=gnu++11` and `build_flags=-std=gnu++17`.
+3. Add this library: `lib_deps=https://github.com/jakubdybczak/esp32-arduino-matter.git`
+4. Choose larger partition scheme, for example `board_build.partitions=min_spiffs.csv`
+5. Run example sketch
+
 ## Example usage
 Please look at [examples](https://github.com/jakubdybczak/esp32-arduino-matter/tree/master/examples). You can test integration with Android and Matter controller by downloading compiled [CHIPTool](https://drive.google.com/drive/folders/1NXqfbRzBQRWCH4VWJQwQSO6KKYeIH7VK) for Android.
 
 ## Limitations
-* Library only works on base ESP32 (no support for ESP32-S2 and other variants).
+* Library only works on base ESP32 (with experimental support for ESP32-S3, ESP32-C3).
 * There is no possibility to change vendor/product ID as this value is pre-compiled.
 * There is no known possibility to change setup PIN.
 * This library comes with precompiled NimBLE, because default Bluedroid shipped with arduino-esp32 takes too much RAM memory.
@@ -26,7 +33,7 @@ This project is currently build based on these projects:
 
 | Project       | Tag/Commit Hash |
 | ------------- | ------------- |
-| [Espressif's esp-idf](https://github.com/espressif/esp-idf) | 4.4.2 (Arduino ESP32 board 2.0.5) |
+| [Espressif's esp-idf](https://github.com/espressif/esp-idf) | 4.4.2</br>Arduino IDE ESP32 board @ 2.0.5</br>PlatformIO espressif platform @ 5.2.0 |
 | [Espressif's SDK for Matter](https://github.com/espressif/esp-matter) | e7c70721  |
 | [Matter](https://github.com/project-chip/connectedhomeip) | 87bee4de |
 
