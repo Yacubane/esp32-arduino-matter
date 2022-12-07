@@ -13,7 +13,7 @@ This projects aims at possibility to easily launch Matter internet-of-things pro
 
 ## Installing on PlatformIO
 1. Use espressif32 platform at version 5.2.0
-2. Turn on C++17 support for, by setting `build_unflags=-std=gnu++11` and `build_flags=-std=gnu++17`.
+2. Turn on C++17 support, by setting `build_unflags=-std=gnu++11` and `build_flags=-std=gnu++17`.
 3. Add this library: `lib_deps=https://github.com/jakubdybczak/esp32-arduino-matter.git`
 4. Choose larger partition scheme, for example `board_build.partitions=min_spiffs.csv`
 5. Run example sketch
@@ -44,7 +44,7 @@ This project is currently build based on these projects:
 
     Windows: `C:\Users\<USER>\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.5\platform.txt`
 
-2. Inside `platform.txt` find `ESP32 Support Start` section and it's `compiler.cpp.flags.esp32` key. Change `-std=gnu++11` to ` -std=gnu++17`.
+2. Inside `platform.txt` find `ESP32 Support Start` section and it's `compiler.cpp.flags.esp32` key. Change `-std=gnu++11` to ` -std=gnu++17`. Do the same thing for `ESP32S3` and `ESP32C3` `Support Start` section if you are using ESP32S3/ESP32C3.
 
 3. Restart Arduino IDE.
 
