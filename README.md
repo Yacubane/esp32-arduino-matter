@@ -19,14 +19,14 @@ This projects aims at possibility to easily launch Matter internet-of-things pro
 5. Run example sketch
 
 ## Example usage
-Please look at [examples](https://github.com/jakubdybczak/esp32-arduino-matter/tree/master/examples). You can test integration with Android and Matter controller by downloading compiled [CHIPTool](https://drive.google.com/drive/folders/1NXqfbRzBQRWCH4VWJQwQSO6KKYeIH7VK) for Android.
+Please look at [examples](https://github.com/jakubdybczak/esp32-arduino-matter/tree/master/examples).
 
 ## Limitations
 * Library only works on base ESP32 (with experimental support for ESP32-S3, ESP32-C3).
 * There is no possibility to change vendor/product ID as this value is pre-compiled.
 * There is no known possibility to change setup PIN.
 * This library comes with precompiled NimBLE, because default Bluedroid shipped with arduino-esp32 takes too much RAM memory.
-* As of 06 Nov 2022, this library does not work with Google Home as this app is compatible with older version of Matter. You can test this library with CHIPTool.
+* Matter Controllers such as Apple Home, Google Home, Smarthings and other might not have full support of all device types.
 
 ## Versions
 This project is currently build based on these projects:
@@ -34,8 +34,8 @@ This project is currently build based on these projects:
 | Project       | Tag/Commit Hash |
 | ------------- | ------------- |
 | [Espressif's esp-idf](https://github.com/espressif/esp-idf) | 4.4.2</br>Arduino IDE ESP32 board @ 2.0.5</br>PlatformIO espressif platform @ 5.2.0 |
-| [Espressif's SDK for Matter](https://github.com/espressif/esp-matter) | e7c70721  |
-| [Matter](https://github.com/project-chip/connectedhomeip) | 87bee4de |
+| [Espressif's SDK for Matter](https://github.com/espressif/esp-matter) | a0f13786  |
+| [Matter](https://github.com/project-chip/connectedhomeip) | 7c2353bb |
 
 ## Enabling C++17 on Arduino IDE
 1. Find `platform.txt` for ESP32 board. Location of this file is platform depended.
