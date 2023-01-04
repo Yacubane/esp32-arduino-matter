@@ -5,8 +5,10 @@
  */
 
 #pragma once
-#include <stdint.h>
+
+#include "esp_bit_defs.h"
 #include "sdkconfig.h"
+#include "soc/soc_caps.h"
 #ifdef CONFIG_ESP_SECURE_CERT_DS_PERIPHERAL
 #include "esp_ds.h"
 #endif
@@ -40,12 +42,30 @@ typedef enum esp_secure_cert_tlv_type {
     ESP_SECURE_CERT_USER_DATA_5 = 54,
 } esp_secure_cert_tlv_type_t;
 
+/**
+ * Flags    8 bits
+ * Used bits:
+ *      bit7(MSB) & bit6 - hmac_based_encryption
+ *          If the value of the bits is 0b10 (i.e. 2 in decimal) then the data in the block needs to be
+ *          decrypted first using the HMAC based encryption scheme
+ *          before sending out
+ * Ununsed bits:
+ *      .
+ *      .
+ *      bit0 (LSB)
+ */
+#define ESP_SECURE_CERT_TLV_FLAG_HMAC_ENCRYPTION        (2 << 6)
+
+#define ESP_SECURE_CERT_IS_TLV_ENCRYPTED(flags) \
+    ((flags & (BIT7 | BIT6)) == ESP_SECURE_CERT_TLV_FLAG_HMAC_ENCRYPTION)
+
 /*
  * Header for each tlv
  */
 typedef struct esp_secure_cert_tlv_header {
     uint32_t magic;
-    uint8_t reserved[4];                /* Reserved bytes for future use, the value currently should be 0xFF */
+    uint8_t flags;                      /* flags byte that identifies different characteristics for the TLV */
+    uint8_t reserved[3];                /* Reserved bytes for future use, the value currently should be 0x0 */
     uint16_t type;                      /* Type of tlv structure, this shall be typecasted
                                            to esp_secure_cert_tlv_type_t for further use */
     uint16_t length;                    /* Length of the data */

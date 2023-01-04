@@ -6,12 +6,13 @@ using namespace esp_matter;
 using namespace esp_matter::endpoint;
 
 /**
-   This program presents example many Matter devices and should be used only
-   for debug purposes (for example checking which devices types are supported)
+   This program presents many Matter devices and should be used only
+   for debug purposes (for example checking which devices types are supported
+   in Matter controller).
 
    Keep in mind that it IS NOT POSSIBLE to run all those endpoints due to
    out of memory. There is need to manually comment out endpoints!
-   Running about 4-5 endpoints at the same time should work.
+   Running about 4 endpoints at the same time should work.
 */
 
 static void on_device_event(const ChipDeviceEvent *event, intptr_t arg) {}
@@ -53,6 +54,7 @@ void setup() {
 
   // !!!
   // USE ONLY ABOUT 4 ENDPOINTS TO AVOID OUT OF MEMORY ERRORS
+  // MANUALLY COMMENT REST OF ENDPOINTS
   // !!!
   
   on_off_light::config_t light_config;
@@ -65,6 +67,10 @@ void setup() {
 
   color_temperature_light::config_t color_temperature_light_config;
   endpoint = color_temperature_light::create(node, &color_temperature_light_config, ENDPOINT_FLAG_NONE, NULL);
+  /* Add color control cluster */
+  cluster = cluster::get(endpoint, ColorControl::Id);
+  cluster::color_control::feature::hue_saturation::config_t hue_saturation_config;
+  cluster::color_control::feature::hue_saturation::add(cluster, &hue_saturation_config);
   print_endpoint_info("color_temperature_light", endpoint);
 
   extended_color_light::config_t extended_color_light_config;
@@ -102,6 +108,7 @@ void setup() {
 
   window_covering_device::config_t window_covering_device_config;
   endpoint = window_covering_device::create(node, &window_covering_device_config, ENDPOINT_FLAG_NONE, NULL);
+  /* Add additional control clusters */
   cluster = cluster::get(endpoint, WindowCovering::Id);
   cluster::window_covering::feature::lift::config_t lift;
   cluster::window_covering::feature::tilt::config_t tilt;

@@ -6,6 +6,7 @@
 #pragma once
 #include "esp_err.h"
 
+#include "soc/soc_caps.h"
 #ifdef CONFIG_ESP_SECURE_CERT_DS_PERIPHERAL
 #include "rsa_sign_alt.h"
 #endif
@@ -37,7 +38,7 @@ esp_err_t esp_secure_cert_init_nvs_partition(void);
  *
  * @params
  *      - buffer(out)       This value shall be filled with the device cert address
- *                          on successfull completion
+ *                          on successful completion
  *      - len(out)          This value shall be filled with the length of the device cert
  *                          If your esp_secure_cert partition is of type NVS, the API will dynamically allocate
  *                          the required memory to store the device cert
@@ -53,8 +54,7 @@ esp_err_t esp_secure_cert_get_device_cert(char **buffer, uint32_t *len);
 /*
  * Free any internally allocated resources for the device cert.
  * @note
- *      This API is only needed in case the partition is of type NVS.
- *      In other cases no internal memory is allocated by the respective API.
+ *      This API would free the memory if it is dynamically allocated
  *
  * @params
  *      - buffer(in)        The data pointer
@@ -66,16 +66,18 @@ esp_err_t esp_secure_cert_free_device_cert(char *buffer);
 /* @info
  *  Get the ca cert from the esp_secure_cert partition
  *
- *  @note
- *       If your esp_secure_cert partition is of type NVS, the API will dynamically allocate
- *       the required memory to store the ca cert and return the pointer.
- *       The pointer can be freed in this case (NVS) using respective free API
+  * @note
+ *      The API shall dynamically allocate the memory if required.
+ *      The dynamic allocation of memory shall be required in following cases:
+ *      1) partition type is NVS
+ *      2) HMAC encryption is enabled for the API needs to be called
  *
- *       In case of cust_flash partition, a read only flash pointer shall be returned here. This pointer should not be freed
+ *      The esp_secure_cert_free_ca_cert API needs to be called in order to free the memory.
+ *      The API shall only free the memory if it has been dynamically allocated.
  *
  * @params
  *      - buffer(out)       This value shall be filled with the ca cert address
- *                          on successfull completion
+ *                          on successful completion
  *      - len(out)          This value shall be filled with the length of the ca cert
  *                          If your esp_secure_cert partition is of type NVS, the API will dynamically allocate
  *                          the required memory to store the ca cert
@@ -91,8 +93,7 @@ esp_err_t esp_secure_cert_get_ca_cert(char **buffer, uint32_t *len);
 /*
  * Free any internally allocated resources for the ca cert.
  * @note
- *      This API is only needed in case the partition is of type NVS.
- *      In other cases no internal memory is allocated by the respective API.
+ *      This API would free the memory if it is dynamically allocated
  *
  * @params
  *      - buffer(in)        The data pointer
@@ -106,16 +107,17 @@ esp_err_t esp_secure_cert_free_ca_cert(char *buffer);
  *  Get the private key from the esp_secure_cert partition
  *
  * @note
+ *      The API shall dynamically allocate the memory if required.
+ *      The dynamic allocation of memory shall be required in following cases:
+ *      1) partition type is NVS
+ *      2) HMAC encryption is enabled for the API needs to be called
  *
- *       If your esp_secure_cert partition is of type NVS, the API will dynamically allocate
- *       the required memory to store the private key and return the pointer.
- *       The pointer can be freed in this case (NVS) using respective free API
+ *      The esp_secure_cert_free_priv_key API needs to be called in order to free the memory.
+ *      The API shall only free the memory if it has been dynamically allocated.
  *
- *       In case of cust_flash partition, a read only flash pointer shall be returned here. This pointer should not be freed
- *
-  * @params
+ * @params
  *      - buffer(out)       This value shall be filled with the private key address
- *                          on successfull completion
+ *                          on successful completion
  *      - len(out)          This value shall be filled with the length of the private key
  *
  *
@@ -129,8 +131,7 @@ esp_err_t esp_secure_cert_get_priv_key(char **buffer, uint32_t *len);
 /*
  * Free any internally allocated resources for the priv key.
  * @note
- *      This API is only needed in case the partition is of type NVS.
- *      In other cases no internal memory is allocated by the respective API.
+ *      This API would free the memory if it is dynamically allocated
  *
  * @params
  *      - buffer(in)        The data pointer
@@ -148,9 +149,7 @@ esp_err_t esp_secure_cert_free_priv_key(char *buffer);
  * @params
  *      - ds_ctx    The pointer to the DS context
  * @return
- *      - ESP_OK    On success
- *      - ESP_FAIL/other relevant esp error code
- *                  On failure
+ *      - NULL      On failure
  */
 esp_ds_data_ctx_t *esp_secure_cert_get_ds_ctx(void);
 

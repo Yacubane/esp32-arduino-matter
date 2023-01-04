@@ -252,6 +252,8 @@ private:
      *  @retval #Others If fails to send report data
      *  @retval #CHIP_NO_ERROR On success.
      *
+     *  If an error is returned, the ReadHandler guarantees that it is not in
+     *  a state where it's waiting for a response.
      */
     CHIP_ERROR SendReportData(System::PacketBufferHandle && aPayload, bool aMoreChunks);
 
@@ -436,6 +438,11 @@ private:
     SessionHolder mSessionHandle;
 
     Messaging::ExchangeHolder mExchangeCtx;
+#if CHIP_CONFIG_UNSAFE_SUBSCRIPTION_EXCHANGE_MANAGER_USE
+    // TODO: this should be replaced by a pointer to the InteractionModelEngine that created the ReadHandler
+    // once InteractionModelEngine is no longer a singleton (see issue 23625)
+    Messaging::ExchangeManager * mExchangeMgr = nullptr;
+#endif // CHIP_CONFIG_UNSAFE_SUBSCRIPTION_EXCHANGE_MANAGER_USE
 
     ObjectList<AttributePathParams> * mpAttributePathList   = nullptr;
     ObjectList<EventPathParams> * mpEventPathList           = nullptr;
