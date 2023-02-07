@@ -25,7 +25,7 @@ This project contains precompiled libraries based on specific version of ESP32 S
 * PlatformIO with [PlatformIO espressif32 platform](https://github.com/platformio/platform-espressif32) at version 5.3.0
 
 ## Limitations
-* Library only works on ESP32, ESP32-S3 and ESP32-C3.
+* Library only works on ESP32 (ESP32-C3 and ESP32-S3 might work as well, but aren't tested).
 * There is no possibility to change vendor/product ID as this value is pre-compiled.
 * There is no known possibility to change setup PIN.
 * This library comes with precompiled NimBLE, because default Bluedroid shipped with arduino-esp32 takes too much RAM memory.
