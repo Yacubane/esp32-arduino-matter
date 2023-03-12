@@ -393,5 +393,81 @@ typedef struct config {
 cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags);
 } /* boolean_state */
 
+namespace localization_configuration {
+typedef struct config {
+    uint16_t cluster_revision;
+    char active_locale[35];
+    config() : cluster_revision(4), active_locale{0} {}
+} config_t;
+
+cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags);
+} /* localization_configuration_cluster */
+
+namespace time_format_localization {
+typedef struct config {
+    uint16_t cluster_revision;
+    nullable<uint8_t> hour_format;
+    feature::calendar_format::config_t calendar_format;
+    config() : cluster_revision(4), hour_format(0) {}
+} config_t;
+
+cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags, uint32_t features);
+} /* time_format_localization */
+
+namespace illuminance_measurement {
+typedef struct config {
+    uint16_t cluster_revision;
+    nullable<uint16_t> illuminance_measured_value;
+    nullable<uint16_t> illuminance_min_measured_value;
+    nullable<uint16_t> illuminance_max_measured_value;
+    config() : cluster_revision(3), illuminance_measured_value(0), illuminance_min_measured_value(1), illuminance_max_measured_value(2) {}
+} config_t;
+
+cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags);
+} /* illuminance_measurement */
+
+namespace pressure_measurement {
+typedef struct config {
+    uint16_t cluster_revision;
+    nullable<int16_t> pressure_measured_value;
+    nullable<int16_t> pressure_min_measured_value;
+    nullable<int16_t> pressure_max_measured_value;
+    config() : cluster_revision(3), pressure_measured_value(), pressure_min_measured_value(), pressure_max_measured_value() {}
+} config_t;
+
+cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags);
+} /* pressure_measurement */
+
+namespace flow_measurement {
+typedef struct config {
+    uint16_t cluster_revision;
+    nullable<uint16_t> flow_measured_value;
+    nullable<uint16_t> flow_min_measured_value;
+    nullable<uint16_t> flow_max_measured_value;
+    config() : cluster_revision(3), flow_measured_value(), flow_min_measured_value(), flow_max_measured_value() {}
+} config_t;
+
+cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags);
+} /* flow_measurement */
+
+namespace pump_configuration_and_control {
+typedef struct config {
+    uint16_t cluster_revision;
+    // Pump Information Attributes
+    const nullable<int16_t> max_pressure;
+    const nullable<uint16_t> max_speed;
+    const nullable<uint16_t> max_flow;
+    // Pump Dynamic Information Attributes
+    uint8_t effective_operation_mode;
+    uint8_t effective_control_mode;
+    nullable<int16_t> capacity;
+    // Pump Settings Attributes
+    uint8_t operation_mode;
+    config() : cluster_revision(3), max_pressure(), max_speed(), max_flow(), effective_operation_mode(0), effective_control_mode(0), capacity(), operation_mode(0) {}
+} config_t;
+
+cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags);
+} /* pump_configuration_and_control */
+
 } /* cluster */
 } /* esp_matter */

@@ -418,5 +418,81 @@ attribute_t *state_value(cluster_t *cluster, bool value);
 } /* attribute */
 } /* boolean_state */
 
+namespace localization_configuration {
+namespace attribute {
+attribute_t *create_active_locale(cluster_t *cluster, char *value, uint16_t length);
+attribute_t *create_supported_locales(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count);
+} /* attribute */
+} /* localization_configuration */
+
+namespace time_format_localization {
+namespace attribute {
+attribute_t *create_hour_format(cluster_t *cluster, nullable<uint8_t> value);
+attribute_t *create_active_calendar_type(cluster_t *cluster, nullable<uint8_t> value);
+attribute_t *create_supported_calendar_types(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count);
+} /* attribute */
+} /* time_format_localization */
+
+namespace illuminance_measurement {
+namespace attribute {
+attribute_t *create_illuminance_measured_value(cluster_t *cluster, nullable<uint16_t> value, nullable<uint16_t> min, nullable<uint16_t> max);
+attribute_t *create_illuminance_min_measured_value(cluster_t *cluster, nullable<uint16_t> value, nullable<uint16_t> min, nullable<uint16_t> max);
+attribute_t *create_illuminance_max_measured_value(cluster_t *cluster, nullable<uint16_t> value, nullable<uint16_t> min, nullable<uint16_t> max);
+attribute_t *create_illuminance_tolerance(cluster_t *cluster, uint16_t value, uint16_t min, uint16_t max);
+attribute_t *create_illuminance_light_sensor_type(cluster_t *cluster, nullable<uint8_t> value, nullable<uint8_t> min, nullable<uint8_t> max);
+} /* attribute */
+} /* illuminance_measurement */
+
+namespace pressure_measurement {
+namespace attribute {
+attribute_t *create_pressure_measured_value(cluster_t *cluster, nullable<int16_t> value);
+attribute_t *create_pressure_min_measured_value(cluster_t *cluster, nullable<int16_t> value);
+attribute_t *create_pressure_max_measured_value(cluster_t *cluster, nullable<int16_t> value);
+attribute_t *create_pressure_tolerance(cluster_t *cluster, uint16_t value, uint16_t min, uint16_t max);
+attribute_t *create_pressure_scaled_value(cluster_t *cluster, nullable<int16_t> value);
+attribute_t *create_pressure_min_scaled_value(cluster_t *cluster, nullable<int16_t> value);
+attribute_t *create_pressure_max_scaled_value(cluster_t *cluster, nullable<int16_t> value);
+attribute_t *create_pressure_scaled_tolerance(cluster_t *cluster, uint16_t value, uint16_t min, uint16_t max);
+attribute_t *create_pressure_scale(cluster_t *cluster, int8_t value);
+} /* attribute */
+} /* pressure_measurement */
+
+namespace flow_measurement {
+namespace attribute {
+attribute_t *create_flow_measured_value(cluster_t *cluster, nullable<uint16_t> value);
+attribute_t *create_flow_min_measured_value(cluster_t *cluster, nullable<uint16_t> value);
+attribute_t *create_flow_max_measured_value(cluster_t *cluster, nullable<uint16_t> value);
+attribute_t *create_flow_tolerance(cluster_t *cluster, uint16_t value, uint16_t min, uint16_t max);
+} /* attribute */
+} /* flow_measurement */
+
+namespace pump_configuration_and_control {
+namespace attribute {
+attribute_t *create_max_pressure(cluster_t *cluster, nullable<int16_t> value);
+attribute_t *create_max_speed(cluster_t *cluster, nullable<uint16_t> value);
+attribute_t *create_max_flow(cluster_t *cluster, nullable<uint16_t> value);
+attribute_t *create_min_const_pressure(cluster_t *cluster, nullable<int16_t> value);
+attribute_t *create_max_const_pressure(cluster_t *cluster, nullable<int16_t> value);
+attribute_t *create_min_comp_pressure(cluster_t *cluster, nullable<int16_t> value);
+attribute_t *create_max_comp_pressure(cluster_t *cluster, nullable<int16_t> value);
+attribute_t *create_min_const_speed(cluster_t *cluster, nullable<uint16_t> value);
+attribute_t *create_max_const_speed(cluster_t *cluster, nullable<uint16_t> value);
+attribute_t *create_min_const_flow(cluster_t *cluster, nullable<uint16_t> value);
+attribute_t *create_max_const_flow(cluster_t *cluster, nullable<uint16_t> value);
+attribute_t *create_min_const_temp(cluster_t *cluster, nullable<int16_t> value);
+attribute_t *create_max_const_temp(cluster_t *cluster, nullable<int16_t> value);
+attribute_t *create_pump_status(cluster_t *cluster, uint16_t value);
+attribute_t *create_effective_operation_mode(cluster_t *cluster, uint8_t value);
+attribute_t *create_effective_control_mode(cluster_t *cluster, uint8_t value);
+attribute_t *create_capacity(cluster_t *cluster, nullable<int16_t> value);
+attribute_t *create_speed(cluster_t *cluster, nullable<uint16_t> value);
+attribute_t *create_lifetime_running_hours(cluster_t *cluster, nullable<uint32_t> value);
+attribute_t *create_pump_power(cluster_t *cluster, nullable<uint32_t> value);
+attribute_t *create_lifetime_energy_consumed(cluster_t *cluster, nullable<uint32_t> value);
+attribute_t *create_operation_mode(cluster_t *cluster, uint8_t value);
+attribute_t *create_control_mode(cluster_t *cluster, uint8_t value);
+} /* attribute */
+} /* pump_configuration_and_control */
+
 } /* cluster */
 } /* esp_matter */
