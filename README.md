@@ -10,7 +10,7 @@ This projects aims at possibility to easily launch Matter internet-of-things pro
 6. Run example sketch.
 
 ## Installing on PlatformIO
-1. Use espressif32 platform at version **v6.2.0**, by setting `platform = espressif32@{{ PLATFORMIO_ESPRESSIF_VERSION }}` in `platformio.ini`. **This is crucial**, because this library contains pre-compiled files.
+1. Use espressif32 platform at version **v6.2.0**, by setting `platform = espressif32@6.2.0` in `platformio.ini`. **This is crucial**, because this library contains pre-compiled files.
 2. Turn on C++17 support, by setting `build_unflags=-std=gnu++11` and `build_flags=-std=gnu++17` in `platformio.ini`.
 3. [Download](https://github.com/Yacubane/esp32-arduino-matter/releases) and put library into `lib` folder of project (:warning: you cannot use `lib_deps` in `platformio.ini`, because this repository does not contain binaries due to too big size). The desired structure is as follows:
 ```
