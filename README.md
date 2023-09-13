@@ -12,15 +12,7 @@ This projects aims at possibility to easily launch Matter internet-of-things pro
 ## Installing on PlatformIO
 1. Use espressif32 platform at version compatible with **2.0.11** `arduino-esp32` core version (you can determine it by looking at changelog [here](https://github.com/platformio/platform-espressif32/releases)). Other versions might work, but there is no guarantee - this library contains precompiled libraries and binaries might or might not be compatible. Set that version by adding: `platform = espressif32@x.x.x` in `platformio.ini`.
 2. Turn on C++17 support, by setting `build_unflags=-std=gnu++11` and `build_flags=-std=gnu++17` in `platformio.ini`.
-3. [Download](https://github.com/Yacubane/esp32-arduino-matter/releases) and put library into `lib` folder of project (:warning: you cannot use `lib_deps` in `platformio.ini`, because this repository does not contain binaries due to too big size). The desired structure is as follows:
-```
-|--platformio-project
-|  |--lib
-|  |  |--esp32-arduino-matter
-|  |  |  |--examples
-|  |  |  |--src
-|  |  |  |--...
-```
+3. Copy the [latest release](https://github.com/Yacubane/esp32-arduino-matter/releases) zip file URL into the `lib_deps` section of `platformio.ini`, (:warning: you cannot use this repository URL in `platformio.ini` because this repository does not contain binaries due to their large size).
 4. Choose larger partition scheme, for example `board_build.partitions=min_spiffs.csv` in `platformio.ini`. `min_spiffs.csv` is one of build-in partition schemas and does need to be created.
 5. Run example sketch.
 
