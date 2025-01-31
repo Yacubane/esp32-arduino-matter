@@ -1,3 +1,5 @@
+> :warning: **This repository is archived and no longer maintained!** Please use [arduino-esp32](https://github.com/espressif/arduino-esp32) as it now supports Matter.
+
 # ESP32 Arduino Matter
 This projects aims at possibility to easily launch Matter internet-of-things protocol on ESP32 with Arduino. Repository contains precompiled and ready to use components from two projects: [Espressif's SDK for Matter](https://github.com/espressif/esp-matter) and [Matter](https://github.com/project-chip/connectedhomeip).
 
